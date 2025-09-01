@@ -42,14 +42,17 @@ public class User {
   @Column(name = "DOB")
   private LocalDate dob;
 
-  @Lob
-  @Column(name = "Role")
-  private String role;
+  @Column(name = "Admin")
+  private Boolean admin;
+
+  @Size(max = 255)
+  @Column(name = "ProfilePicture")
+  private String profilePicture;
+
+  @OneToMany(mappedBy = "user")
+  private Set<Profile> profiles = new LinkedHashSet<>();
 
   @OneToMany(mappedBy = "userID")
-  private Set<Userkey> userkeys = new LinkedHashSet<>();
-
-  @OneToMany(mappedBy = "userID")
-  private Set<Viewinghistory> viewinghistories = new LinkedHashSet<>();
+  private Set<netflix.clone.NCB.Models.Viewinghistory> viewinghistories = new LinkedHashSet<>();
 
 }

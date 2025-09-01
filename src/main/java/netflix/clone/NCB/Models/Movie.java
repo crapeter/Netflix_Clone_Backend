@@ -7,8 +7,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -26,7 +24,7 @@ public class Movie {
   private String title;
 
   @Lob
-  @Column(name = "Description")
+  @Column(name = "description")
   private String description;
 
   @Column(name = "ReleaseDate")
@@ -47,8 +45,5 @@ public class Movie {
   @Size(max = 255)
   @Column(name = "VideoURL")
   private String videoURL;
-
-  @OneToMany(mappedBy = "movieID")
-  private Set<Viewinghistory> viewinghistories = new LinkedHashSet<>();
 
 }
