@@ -29,7 +29,7 @@ public class Profile {
   private String profileName;
 
   @Size(max = 255)
-  @Column(name = "Password", nullable = false)
+  @Column(name = "Password")
   private String password;
 
   @NotNull

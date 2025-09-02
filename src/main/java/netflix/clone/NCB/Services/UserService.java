@@ -49,6 +49,7 @@ public class UserService {
     profile.setUser(user1);
     profile.setProfileName(user1.getUserName());
     profile.setAge(usersAge);
+    profile.setPassword("password");
     profileRepo.save(profile);
     return user1;
   }
