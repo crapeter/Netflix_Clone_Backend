@@ -11,10 +11,6 @@ import org.springframework.stereotype.Service;
 import java.time.Period;
 import java.util.List;
 
-/**
- * User roles are "User" and "Admin"
-*/
-
 @Service
 public class UserService {
   private final UserRepo userRepo;
@@ -62,6 +58,10 @@ public class UserService {
 
   public List<User> getAllUsers() {
     return userRepo.findAll();
+  }
+
+  public boolean isAdmin(String email) {
+    return userRepo.findByEmail(email).map(User::getAdmin).orElse(false);
   }
 
   public boolean update(UserDTO userDTO) {

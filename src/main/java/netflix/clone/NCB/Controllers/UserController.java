@@ -46,6 +46,12 @@ public class UserController {
     return ResponseEntity.ok(userService.getAllUsers());
   }
 
+  @GetMapping("/{email}/isAdmin")
+  public ResponseEntity<?> isAdmin(@PathVariable String email) {
+    boolean isAdmin = userService.isAdmin(email);
+    return ResponseEntity.ok(Map.of("isAdmin", isAdmin));
+  }
+
   @PatchMapping("/update")
   public ResponseEntity<?> updateUser(@RequestBody UserDTO userDTO) {
     // Implementation for updating user details
