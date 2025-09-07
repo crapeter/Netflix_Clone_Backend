@@ -86,4 +86,14 @@ public class UserService {
     }
     return false;
   }
+
+  public boolean promoteToAdmin(String email) {
+    User user = userRepo.findByEmail(email).orElse(null);
+    if (user != null) {
+      user.setAdmin(true);
+      userRepo.save(user);
+      return true;
+    }
+    return false;
+  }
 }

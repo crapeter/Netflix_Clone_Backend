@@ -23,6 +23,9 @@ public class Movie {
   @Column(name = "Title", nullable = false, length = 100)
   private String title;
 
+  @Column(name = "Director")
+  private String director;
+
   @Lob
   @Column(name = "description")
   private String description;

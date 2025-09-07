@@ -29,10 +29,13 @@ public class Viewinghistory {
   @JoinColumn(name = "MovieID")
   private Movie movieID;
 
+  @Column(name = "ProfileID")
+  private Integer profileID;
+
   @Column(name = "WatchDate")
   private Instant watchDate;
 
-  @ColumnDefault("0")
+  @ColumnDefault("0") // seconds passed
   @Column(name = "Progress")
   private Integer progress;
 

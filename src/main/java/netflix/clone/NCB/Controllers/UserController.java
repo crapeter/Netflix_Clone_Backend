@@ -65,4 +65,14 @@ public class UserController {
     boolean success = userService.updateProfilePicture(email, profilePicture);
     return ResponseEntity.ok("Profile picture updated successfully");
   }
+
+  @PatchMapping("/promote/{email}")
+  public ResponseEntity<?> promoteToAdmin(@PathVariable String email) {
+    boolean success = userService.promoteToAdmin(email);
+    if (success) {
+      return ResponseEntity.ok("User promoted to admin successfully");
+    } else {
+      return ResponseEntity.status(400).body("Promotion failed");
+    }
+  }
 }
