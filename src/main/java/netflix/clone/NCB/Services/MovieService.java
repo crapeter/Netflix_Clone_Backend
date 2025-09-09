@@ -6,6 +6,7 @@ import netflix.clone.NCB.Models.Movie;
 import netflix.clone.NCB.Repos.MovieRepo;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 //import java.util.logging.Logger;
 
@@ -135,5 +139,10 @@ public class MovieService {
     long expiresAt = Instant.now().getEpochSecond() + i;
     String signature = HmacUtil.sign(filename + expiresAt, System.getenv("SECRET_KEY"));
     return String.format("/api/movies/stream/%s?expires=%d&signature=%s", filename, expiresAt, signature);
+  }
+
+  public Resource getMoviePoster(String filename) throws IOException {
+    Path posterPath = Paths.get("../MoviePosters").resolve(filename).normalize().toAbsolutePath();
+    return new UrlResource(posterPath.toUri());
   }
 }

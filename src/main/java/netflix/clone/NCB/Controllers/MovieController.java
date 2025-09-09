@@ -4,10 +4,13 @@ import netflix.clone.NCB.Components.HmacUtil;
 import netflix.clone.NCB.Components.JwtUtil;
 import netflix.clone.NCB.DTOs.MovieDTO;
 import netflix.clone.NCB.Services.MovieService;
+import org.springframework.core.io.Resource;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.time.Instant;
 import java.util.Map;
 
@@ -62,5 +65,14 @@ public class MovieController {
 
     Map<String, String> response = Map.of("signedUrl", signedUrl);
     return ResponseEntity.ok(response);
+  }
+
+  @GetMapping("/poster/{filename}")
+  public ResponseEntity<?> getMoviePosters(@PathVariable String filename) throws IOException {
+    Resource poster = movieService.getMoviePoster(filename);
+    String content = Files.probeContentType(poster.getFile().toPath());
+    return ResponseEntity.ok()
+        .contentType(MediaType.parseMediaType(content != null ? content : "image/jpeg"))
+        .body(poster);
   }
 }
