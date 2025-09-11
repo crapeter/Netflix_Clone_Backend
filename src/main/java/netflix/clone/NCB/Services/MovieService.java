@@ -122,7 +122,7 @@ public class MovieService {
     movie.setMoviePoster(movieDTO.getMoviePoster());
     movie.setDescription(movieDTO.getDescription());
     movie.setRating(movieDTO.getRating());
-    movie.setRating(movieDTO.getRating());
+    movie.setDirector(movieDTO.getDirector());
     movie.setReleaseDate(movieDTO.getReleaseDate());
     movie.setTitle(movieDTO.getTitle());
     movie.setVideoURL(movieDTO.getVideoURL());
